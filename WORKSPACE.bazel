@@ -1,1 +1,1 @@
-workspace(name = "co_bisontrails_rules_kustomize")
+workspace(name = "com_github_seh_rules_kustomize")

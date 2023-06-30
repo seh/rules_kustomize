@@ -87,7 +87,7 @@ By convention, we'll add a couple of Bazel targets to the :file:`BUILD.bazel` fi
 .. code:: bazel
 
    load(
-        "@co_bisontrails_rules_kustomize//kustomize:kustomize.bzl",
+        "@rules_kustomize//kustomize:kustomize.bzl",
         "kustomization",
     )
 
@@ -104,7 +104,7 @@ This "base" target we've defined doesn't produce any artifacts. It prepares the 
 
 .. code:: bazel
     load(
-        "@co_bisontrails_rules_kustomize//kustomize:kustomize.bzl",
+        "@rules_kustomize//kustomize:kustomize.bzl",
         "kustomized_resources",
     )
 

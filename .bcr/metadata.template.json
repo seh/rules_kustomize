@@ -1,5 +1,5 @@
 {
-    "homepage": "https://github.com/bisontrails/rules_kustomize",
+    "homepage": "https://github.com/seh/rules_kustomize",
     "maintainers": [
         {
             "email": "seh@panix.com",
@@ -8,7 +8,7 @@
         }
     ],
     "repository": [
-        "github:bisontrails/rules_kustomize"
+        "github:seh/rules_kustomize"
     ],
     "versions": [],
     "yanked_versions": {}
