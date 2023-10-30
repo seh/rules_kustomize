@@ -149,16 +149,18 @@ def _download_tool_impl(ctx):
             fail('"arch" is set but "os" is not')
         os, arch = ctx.attr.os, ctx.attr.arch
     version = ctx.attr.version
+    extension = ".zip" if os == "windows" else ".tar.gz"
 
     sha256sum = _TOOLS_BY_RELEASE[version][struct(os = os, arch = arch)]
     if not sha256sum:
         fail('No Kustomize tool is available for OS "{}" and CPU architecture "{}" at version {}'.format(os, arch, version))
     ctx.report_progress('Downloading Kustomize tool for OS "{}" and CPU architecture "{}" at version {}.'.format(os, arch, version))
     ctx.download_and_extract(
-        url = "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2F{version}/kustomize_{version}_{os}_{arch}.tar.gz".format(
-            version = version,
-            os = os,
+        url = "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2F{version}/kustomize_{version}_{os}_{arch}{extension}".format(
             arch = arch,
+            extension = extension,
+            os = os,
+            version = version,
         ),
         sha256 = sha256sum,
     )
