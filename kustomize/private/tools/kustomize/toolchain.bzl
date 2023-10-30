@@ -3,6 +3,14 @@
 visibility("public")
 
 _TOOLS_BY_RELEASE = {
+    "v5.2.1": {
+        struct(os = "darwin", arch = "amd64"): "b7aba749da75d33e6fea49a5098747d379abc45583ff5cd16e2356127a396549",
+        struct(os = "darwin", arch = "arm64"): "f6a5f3cffd45bac585a0c80b5ed855c2b72d932a1d6e8e7c87aae3be4eba5750",
+        struct(os = "linux", arch = "amd64"): "88346543206b889f9287c0b92c70708040ecd5aad54dd33019c4d6579cd24de8",
+        struct(os = "linux", arch = "arm64"): "5566f7badece5a72d42075d8dffa6296a228966dd6ac2390de7afbb9675c3aaa",
+        struct(os = "windows", arch = "amd64"): "870ccb282cb3404c471a7f270299ae0cf1310f354822b8c0a626f1edd0b3dcff",
+        struct(os = "windows", arch = "arm64"): "ef5b2953cf792fa0118429c090113f697aca1810f6d5015838ad0917351ade9d",
+    },
     "v5.1.0": {
         struct(os = "darwin", arch = "amd64"): "08664a17820138a68b7cbe302b1b63f4ec19c6e0838385f789ee0470f026ba25",
         # NB: There is no Darwin build available for the ARM64 architecture.
@@ -37,7 +45,7 @@ _TOOLS_BY_RELEASE = {
     },
 }
 
-_DEFAULT_TOOL_VERSION = "v5.1.0"
+_DEFAULT_TOOL_VERSION = "v5.2.1"
 
 def known_release_versions():
     return _TOOLS_BY_RELEASE.keys()

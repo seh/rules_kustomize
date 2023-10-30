@@ -122,16 +122,16 @@ In order to use these rules in your Bazel project, you must instruct Bazel to do
 
 .. code:: bazel
 
-    bazel_dep(name = "rules_kustomize", version = "0.3.4")
+    bazel_dep(name = "rules_kustomize", version = "0.3.6")
 
 This declaration registers a particular version of the :tool:`helm` and :tool:`kustomize` tools, respectively. By default, it registers `the latest version known to the rules <Tool Versions_>`_. You can specify a preferred version for each tool by supplying the known version slug (e.g. "v4.5.7") as an argument to the respective module extension's :field:`download` tag.
 
 .. code:: bazel
 
-    bazel_dep(name = "rules_kustomize", version = "0.3.4")
+    bazel_dep(name = "rules_kustomize", version = "0.3.6")
 
     kustomize = use_extension("@rules_kustomize//kustomize:extensions.bzl", "kustomize")
-    kustomize.download(version = "v5.0.3")
+    kustomize.download(version = "v5.1.0")
     helm = use_extension("@rules_kustomize//kustomize:extensions.bzl", "helm")
     helm.download(version = "v3.11.3")
 
@@ -146,7 +146,8 @@ At present, these rules can load the following versions of these tools:
 
 * :tool:`kustomize`
 
-  * `v5.1.0 <https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv5.1.0>`__ (default)
+  * `v5.2.1 <https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv5.2.1>`__ (default)
+  * `v5.1.0 <https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv5.1.0>`__
   * `v5.0.3 <https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv5.0.3>`__
   * `v5.0.1 <https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv5.0.1>`__
   * `v5.0.0 <https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv5.0.0>`__
