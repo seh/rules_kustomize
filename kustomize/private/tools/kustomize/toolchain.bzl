@@ -171,7 +171,10 @@ def _download_tool_impl(ctx):
         executable = False,
         substitutions = {
             "{containing_package_prefix}": "@{}{}".format(_MODULE_REPOSITORY_NAME, _CONTAINING_PACKAGE_PREFIX),
-            "{extension}": ".exe" if os == "windows" else "",
+            # NB: As of version 5.2.1, even the released tools built
+            # for Windows lack an extension, whereas they used to use
+            # the conventional ".exe" extension.
+            "{extension}": "",
             "{version}": version,
         },
     )
