@@ -3,6 +3,14 @@
 visibility("public")
 
 _TOOLS_BY_RELEASE = {
+    "v3.13.1": {
+        struct(os = "darwin", arch = "amd64"): "e207e009b931162b0383b463c333a2792355200e91dbcf167c97c150e9f5fedb",
+        struct(os = "darwin", arch = "arm64"): "46596d6d2d9aa545eb74f40684858fac0841df373ca760af1259d3493161d8c9",
+        struct(os = "linux", arch = "amd64"): "98c363564d00afd0cc3088e8f830f2a0eeb5f28755b3d8c48df89866374a1ed0",
+        struct(os = "linux", arch = "arm64"): "8c4a0777218b266a7b977394aaf0e9cef30ed2df6e742d683e523d75508d6efe",
+        struct(os = "windows", arch = "amd64"): "6e16fbc5e50a5841be2dc725e790234f09aa2a5ebe289493c90f65ecae7b156f",
+        # NB: There is no Windows build available for the ARM64 architecture.
+    },
     "v3.12.1": {
         struct(os = "darwin", arch = "amd64"): "f487b5d8132bd2091378258a3029e33ee10f71575b2167cdfeaf6d0144d20938",
         struct(os = "darwin", arch = "arm64"): "e82e0433589b1b5170807d6fec75baedba40620458510bbd30cdb9d2246415fe",
@@ -37,7 +45,7 @@ _TOOLS_BY_RELEASE = {
     },
 }
 
-_DEFAULT_TOOL_VERSION = "v3.12.1"
+_DEFAULT_TOOL_VERSION = "v3.13.1"
 
 def known_release_versions():
     return _TOOLS_BY_RELEASE.keys()
