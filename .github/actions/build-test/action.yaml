@@ -14,21 +14,9 @@ runs:
         ~/.cache/bazelisk
         ~/.cache/bazel
       key: ${{ runner.os }}-${{ env.cache-name }}
-  - name: Install FUSE
-    run: sudo apt install libfuse2
-    shell: bash
-  - name: Install sandboxfs
-    run: |
-      f='./sandboxfs.tar.gz'
-      curl --location --output "${f}" --silent \
-        https://github.com/bazelbuild/sandboxfs/releases/download/sandboxfs-0.2.0/sandboxfs-0.2.0-20200420-linux-x86_64.tgz
-      sudo tar xzv -C /usr/local -f "${f}"
-      rm "${f}"
-    shell: bash
   - name: Build all Bazel targets
     run: |
       bazel build \
-        --experimental_use_sandboxfs \
         //...
     shell: bash
   - name: Test all Bazel targets
@@ -37,7 +25,6 @@ runs:
     # https://github.com/bazelbuild/bazel/issues/7470#issuecomment-764591831.
     run: |
       bazel test \
-        --experimental_use_sandboxfs \
         --strategy TestRunner=processwrapper-sandbox \
         --test_output=errors \
         //...

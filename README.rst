@@ -379,6 +379,8 @@ There are three ways around this problem:
 
 * Use a Bazel sandboxing_ implementation that doesn't rely on symbolic links, such as its `sandboxfs <https://docs.bazel.build/versions/master/sandboxing.html#sandboxfs_>`__ FUSE file system. With the :tool:`sandboxfs` tool installed, pass the :cmdflag:`--experimental_use_sandboxfs` `flag <https://docs.bazel.build/versions/master/command-line-reference.html#flag--experimental_use_sandboxfs>`__ to :command:`bazel build`, :command:`bazel test`, or :command:`bazel run`.
 
+  **NB:** As of Bazel version 7.0.0, per `commit b6e2693f83a7ece37c902416de26a3807b541ceb <https://github.com/bazelbuild/bazel/commit/b6e2693f83a7ece37c902416de26a3807b541ceb>`__, the :cmdflag:`--experimental_use_sandboxfs` flag is no longer available. Bazel no longer supports use of the :tool:`sandboxfs` tool. See :tool:`kustomize` `issue 5216 <https://github.com/kubernetes-sigs/kustomize/issues/5216>`__ for an alternate proposed workaround, which is implemented but not merged.
+
 .. _disable sandboxing:
 
 * Disable Bazel sandboxing_ entirely by omitting :value:`sandboxed` from the values supplied via its :cmdflag:`--spawn_strategy` `flag <https://docs.bazel.build/versions/master/command-line-reference.html#flag--spawn_strategy>`__. With sandboxing disabled, Bazel will present the input files to :tool:`kustomize` as regular files. So long as those files lie within the :term:`kustomization` root, the :value:`LoadRestrictionsRootOnly` load restrictor will not intervene.

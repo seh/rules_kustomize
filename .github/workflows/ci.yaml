@@ -12,7 +12,7 @@ jobs:
       with:
         # See https://github.com/bazelbuild/buildtools/blob/master/WARNINGS.md.
         warnings: -function-docstring,-module-docstring
-        buildifier_version: 6.1.0
+        buildifier_version: 6.4.0
   build-test:
     runs-on: ubuntu-latest
     steps:
