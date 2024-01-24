@@ -14,7 +14,7 @@ visibility("//kustomize")
 def _kustomize_impl(ctx):
     download_tool(
         name = "kustomize_tool",
-        version = maximal_selected_version(ctx, "Helm"),
+        version = maximal_selected_version(ctx, "kustomize"),
     )
 
 kustomize = module_extension(

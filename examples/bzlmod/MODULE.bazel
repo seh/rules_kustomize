@@ -1,9 +1,9 @@
 module(
     name = "rules_kustomize_examples_bzlmod",
-    version = "0.3.7",
+    version = "0.3.8",
 )
 
-bazel_dep(name = "rules_kustomize", version = "0.3.7")
+bazel_dep(name = "rules_kustomize", version = "0.3.8")
 local_path_override(
     module_name = "rules_kustomize",
     path = "../../",
