@@ -663,7 +663,7 @@
   "moduleExtensions": {
     "//kustomize:extensions.bzl%helm": {
       "general": {
-        "bzlTransitiveDigest": "m3/elwuzcEH6Ez8TN+Af6MIJTMX67yTsunzXZake8n0=",
+        "bzlTransitiveDigest": "sP+ZQpDge1Tc/AowlrmTJHnnIxIdZnTxlrF24DaV4tc=",
         "accumulatedFileDigests": {},
         "envVariables": {},
         "generatedRepoSpecs": {
@@ -690,7 +690,7 @@
     },
     "//kustomize:extensions.bzl%kustomize": {
       "general": {
-        "bzlTransitiveDigest": "m3/elwuzcEH6Ez8TN+Af6MIJTMX67yTsunzXZake8n0=",
+        "bzlTransitiveDigest": "sP+ZQpDge1Tc/AowlrmTJHnnIxIdZnTxlrF24DaV4tc=",
         "accumulatedFileDigests": {},
         "envVariables": {},
         "generatedRepoSpecs": {
@@ -699,7 +699,7 @@
             "ruleClassName": "_download_tool",
             "attributes": {
               "name": "_main~kustomize~kustomize_tool",
-              "version": "v5.3.0"
+              "version": "v5.4.0"
             }
           },
           "kustomize_tool_toolchains": {
@@ -708,7 +708,7 @@
             "attributes": {
               "name": "_main~kustomize~kustomize_tool_toolchains",
               "tool_repo": "kustomize_tool",
-              "version": "v5.3.0"
+              "version": "v5.4.0"
             }
           }
         },
