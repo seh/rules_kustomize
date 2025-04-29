@@ -133,7 +133,7 @@ This declaration registers a particular version of the :tool:`helm` and :tool:`k
     kustomize = use_extension("@rules_kustomize//kustomize:extensions.bzl", "kustomize")
     kustomize.download(version = "v5.5.0")
     helm = use_extension("@rules_kustomize//kustomize:extensions.bzl", "helm")
-    helm.download(version = "v3.12.1")
+    helm.download(version = "v3.13.1")
 
 If any number of modules wind up specifying different version values for these tags, the latest version—per :term:`Semantic Versioning` sorting—among the proposed candidate versions wins. If any of the tags also include the :field:`tolerate_newer` attribute with a value of :value:`False`, then no competing version newer than that tag's proposed version can win.
 
@@ -153,11 +153,9 @@ At present, these rules can load the following versions of these tools:
 
 * :tool:`helm`
 
-  * `v3.13.1 <https://github.com/helm/helm/releases/tag/v3.13.1>`__ (default)
+  * `v3.13.1 <https://github.com/helm/helm/releases/tag/v3.17.3>`__ (default)
+  * `v3.13.1 <https://github.com/helm/helm/releases/tag/v3.13.1>`__
   * `v3.12.1 <https://github.com/helm/helm/releases/tag/v3.12.1>`__
-  * `v3.11.3 <https://github.com/helm/helm/releases/tag/v3.11.3>`__
-  * `v3.11.2 <https://github.com/helm/helm/releases/tag/v3.11.2>`__
-  * `v3.11.0 <https://github.com/helm/helm/releases/tag/v3.11.0>`__
 
 Rules
 =====
