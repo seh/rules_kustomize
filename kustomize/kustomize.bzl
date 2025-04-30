@@ -1,4 +1,8 @@
 load(
+    "@rules_shell//shell:sh_binary.bzl",
+    "sh_binary",
+)
+load(
     "//kustomize/private:future.bzl",
     _runfile_path = "runfile_path",
 )
@@ -250,7 +254,7 @@ def kustomized_resources(name, **kwargs):
             Label("@platforms//os:windows"),
         ],
     )
-    native.sh_binary(
+    sh_binary(
         name = kustomize_build_name,
         # NB: On Windows, we don't expect to have a runfiles directory
         # available, so instead we rely on a runfiles manifest to tell

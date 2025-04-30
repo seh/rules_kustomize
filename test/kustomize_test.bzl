@@ -1,11 +1,11 @@
 load(
+    "@bazel_skylib//rules:diff_test.bzl",
+    "diff_test",
+)
+load(
     "//kustomize:kustomize.bzl",
     "kustomization",
     "kustomized_resources",
-)
-load(
-    "@bazel_skylib//rules:diff_test.bzl",
-    "diff_test",
 )
 
 def kustomize_test(
