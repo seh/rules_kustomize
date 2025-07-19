@@ -152,9 +152,9 @@ At present, these rules can load the following versions of these tools:
 
 * :tool:`helm`
 
-  * `v3.17.3 <https://github.com/helm/helm/releases/tag/v3.17.3>`__ (default)
+  * `v3.17.4 <https://github.com/helm/helm/releases/tag/v3.17.4>`__ (default)
+  * `v3.17.3 <https://github.com/helm/helm/releases/tag/v3.17.3>`__
   * `v3.13.1 <https://github.com/helm/helm/releases/tag/v3.13.1>`__
-  * `v3.12.1 <https://github.com/helm/helm/releases/tag/v3.12.1>`__
 
 Rules
 =====

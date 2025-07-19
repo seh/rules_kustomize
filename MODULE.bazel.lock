@@ -139,7 +139,7 @@
   "moduleExtensions": {
     "//kustomize:extensions.bzl%helm": {
       "general": {
-        "bzlTransitiveDigest": "VW/mejQOsjew9Cj4qSxLEJ2/Ed8eii/RQOypd7M05A8=",
+        "bzlTransitiveDigest": "kxaXIz3UeFWD62aVDlwrXatM1GOxhDlgs+rOxErFAyc=",
         "usagesDigest": "gbqTmWJJGmYiG5qwRhLkhxY5/90TLSD/Wv9URCvglQo=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
@@ -148,14 +148,14 @@
           "helm_tool": {
             "repoRuleId": "@@//kustomize/private/tools/helm:toolchain.bzl%_download_tool",
             "attributes": {
-              "version": "v3.17.3"
+              "version": "v3.17.4"
             }
           },
           "helm_tool_toolchains": {
             "repoRuleId": "@@//kustomize/private/tools/helm:toolchain.bzl%_toolchains_repo",
             "attributes": {
               "tool_repo": "helm_tool",
-              "version": "v3.17.3"
+              "version": "v3.17.4"
             }
           }
         },
@@ -164,7 +164,7 @@
     },
     "//kustomize:extensions.bzl%kustomize": {
       "general": {
-        "bzlTransitiveDigest": "VW/mejQOsjew9Cj4qSxLEJ2/Ed8eii/RQOypd7M05A8=",
+        "bzlTransitiveDigest": "kxaXIz3UeFWD62aVDlwrXatM1GOxhDlgs+rOxErFAyc=",
         "usagesDigest": "WvY+6gVQ+EsZ9cQYDJPod93X/Wqz0/Iz1XLDKed28fw=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},

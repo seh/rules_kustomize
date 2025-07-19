@@ -3,6 +3,14 @@
 visibility("public")
 
 _TOOLS_BY_RELEASE = {
+    "v3.17.4": {
+        struct(os = "darwin", arch = "amd64"): "6dfce5d8b09442205393068f5c911b8f20958edd5b67cc26f7eb3330f93225f1",
+        struct(os = "darwin", arch = "arm64"): "f4732719827a76452035641629aa92091adc4a9f1ccbc8d53a729b53e0add869",
+        struct(os = "linux", arch = "amd64"): "c91e3d7293849eff3b4dc4ea7994c338bcc92f914864d38b5789bab18a1d775d",
+        struct(os = "linux", arch = "arm64"): "460a31d1511abb5ad776a26a2a3f0f1382a241b2df3c6d725b0f63c9058ba15a",
+        struct(os = "windows", arch = "amd64"): "8ffe44ee2aca8cf32156b42efd50e5dabda8da65ab1f10707d9666dea6fcc7e9",
+        struct(os = "windows", arch = "arm64"): "ef36602d30ce0945b57cc0ceeff674128adf8918da9af6e4fff496930549ac61",
+    },
     "v3.17.3": {
         struct(os = "darwin", arch = "amd64"): "20ef8df4671349a6fc556a621be1170dd709c6c0cf5f7e83a2d9fb0515fd97fc",
         struct(os = "darwin", arch = "arm64"): "89aec43ce07b06239f1bba4a6507236bb48ae487bc5065a8e254d3ce58a16997",
@@ -19,17 +27,9 @@ _TOOLS_BY_RELEASE = {
         struct(os = "windows", arch = "amd64"): "6e16fbc5e50a5841be2dc725e790234f09aa2a5ebe289493c90f65ecae7b156f",
         # NB: There is no Windows build available for the ARM64 architecture.
     },
-    "v3.12.1": {
-        struct(os = "darwin", arch = "amd64"): "f487b5d8132bd2091378258a3029e33ee10f71575b2167cdfeaf6d0144d20938",
-        struct(os = "darwin", arch = "arm64"): "e82e0433589b1b5170807d6fec75baedba40620458510bbd30cdb9d2246415fe",
-        struct(os = "linux", arch = "amd64"): "1a7074f58ef7190f74ce6db5db0b70e355a655e2013c4d5db2317e63fa9e3dea",
-        struct(os = "linux", arch = "arm64"): "50548d4fedef9d8d01d1ed5a2dd5c849271d1017127417dc4c7ef6777ae68f7e",
-        struct(os = "windows", arch = "amd64"): "9040f8f37c90600a51db4934c04bc9c2adc058cb2161e20b5193b3ba46de10fa",
-        # NB: There is no Windows build available for the ARM64 architecture.
-    },
 }
 
-_DEFAULT_TOOL_VERSION = "v3.17.3"
+_DEFAULT_TOOL_VERSION = "v3.17.4"
 
 def known_release_versions():
     return _TOOLS_BY_RELEASE.keys()
