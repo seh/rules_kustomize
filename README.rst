@@ -103,6 +103,7 @@ By default, the kustomization_ rule assumes the :file:`kustomization` file is na
 This "base" target we've defined doesn't produce any artifacts. It prepares the recipe for building artifacts, in the same way that a :term:`kustomization`'s files are inert input for the :tool:`kustomize` tool. When we'd like to build the :term:`kustomization` using particular options—as we would by invoking :command:`kustomize build`—we define another target in a :file:`BUILD.bazel` file. Here we'll add to the same Bazel package, this time using the kustomized_resources_ rule.
 
 .. code:: bazel
+
     load(
         "@rules_kustomize//kustomize:kustomize.bzl",
         "kustomized_resources",
@@ -146,7 +147,8 @@ At present, these rules can load the following versions of these tools:
 
 * :tool:`kustomize`
 
-  * `v5.7.0 <https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv5.7.0>`__ (default)
+  * `v5.7.1 <https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv5.7.1>`__ (default)
+  * `v5.7.0 <https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv5.7.0>`__
   * `v5.6.0 <https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv5.6.0>`__
   * `v5.5.0 <https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv5.5.0>`__
 

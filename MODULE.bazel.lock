@@ -141,7 +141,7 @@
   "moduleExtensions": {
     "//kustomize:extensions.bzl%helm": {
       "general": {
-        "bzlTransitiveDigest": "kxaXIz3UeFWD62aVDlwrXatM1GOxhDlgs+rOxErFAyc=",
+        "bzlTransitiveDigest": "MhuD89SFvrNiitFkka6ExrCS4IIIAeyOPlI9jzCAZ4Y=",
         "usagesDigest": "gbqTmWJJGmYiG5qwRhLkhxY5/90TLSD/Wv9URCvglQo=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
@@ -166,7 +166,7 @@
     },
     "//kustomize:extensions.bzl%kustomize": {
       "general": {
-        "bzlTransitiveDigest": "kxaXIz3UeFWD62aVDlwrXatM1GOxhDlgs+rOxErFAyc=",
+        "bzlTransitiveDigest": "MhuD89SFvrNiitFkka6ExrCS4IIIAeyOPlI9jzCAZ4Y=",
         "usagesDigest": "WvY+6gVQ+EsZ9cQYDJPod93X/Wqz0/Iz1XLDKed28fw=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
@@ -175,14 +175,14 @@
           "kustomize_tool": {
             "repoRuleId": "@@//kustomize/private/tools/kustomize:toolchain.bzl%_download_tool",
             "attributes": {
-              "version": "v5.7.0"
+              "version": "v5.7.1"
             }
           },
           "kustomize_tool_toolchains": {
             "repoRuleId": "@@//kustomize/private/tools/kustomize:toolchain.bzl%_toolchains_repo",
             "attributes": {
               "tool_repo": "kustomize_tool",
-              "version": "v5.7.0"
+              "version": "v5.7.1"
             }
           }
         },
