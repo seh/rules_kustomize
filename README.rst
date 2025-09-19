@@ -123,13 +123,13 @@ In order to use these rules in your Bazel project, you must instruct Bazel to do
 
 .. code:: bazel
 
-    bazel_dep(name = "rules_kustomize", version = "0.4.0")
+    bazel_dep(name = "rules_kustomize", version = "0.5.1")
 
 This declaration registers a particular version of the :tool:`helm` and :tool:`kustomize` tools, respectively. By default, it registers `the latest version known to the rules <Tool Versions_>`_. You can specify a preferred version for each tool by supplying the known version slug (e.g. "v5.5.0") as an argument to the respective module extension's :field:`download` tag.
 
 .. code:: bazel
 
-    bazel_dep(name = "rules_kustomize", version = "0.4.0")
+    bazel_dep(name = "rules_kustomize", version = "0.5.1")
 
     kustomize = use_extension("@rules_kustomize//kustomize:extensions.bzl", "kustomize")
     kustomize.download(version = "v5.5.0")
@@ -154,7 +154,8 @@ At present, these rules can load the following versions of these tools:
 
 * :tool:`helm`
 
-  * `v3.17.4 <https://github.com/helm/helm/releases/tag/v3.17.4>`__ (default)
+  * `v3.19.0 <https://github.com/helm/helm/releases/tag/v3.19.0>`__ (default)
+  * `v3.17.4 <https://github.com/helm/helm/releases/tag/v3.17.4>`__
   * `v3.17.3 <https://github.com/helm/helm/releases/tag/v3.17.3>`__
   * `v3.13.1 <https://github.com/helm/helm/releases/tag/v3.13.1>`__
 
