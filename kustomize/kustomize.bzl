@@ -153,6 +153,10 @@ _kustomized_resources_attrs = {
         doc = "The built result, as a YAML stream of KRM resources in separate documents.",
         mandatory = True,
     ),
+    "silent_on_success": attr.bool(
+        doc = "If true, suppress stderr output when the build succeeds.",
+        default = True,
+    ),
 }
 
 _kustomize_toolchain_type = "//tools/kustomize:toolchain_type"
@@ -220,6 +224,9 @@ def _kustomized_resources_impl(ctx):
                 ([helm_tool] if kustomization.requires_helm else []),
         outputs = [ctx.outputs.result],
         use_default_shell_env = use_default_shell_env,
+        env = {
+            "KUSTOMIZE_RESOURCES__SILENT_ON_SUCCESS": "1" if ctx.attr.silent_on_success else "",
+        },
         mnemonic = mnemonic,
         progress_message = progress_message,
     )
