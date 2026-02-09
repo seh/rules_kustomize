@@ -141,7 +141,7 @@
   "moduleExtensions": {
     "//kustomize:extensions.bzl%helm": {
       "general": {
-        "bzlTransitiveDigest": "FSVPDrXMHaOvp53FoZmTD/K+NnHnMLCeUF9MCr235X0=",
+        "bzlTransitiveDigest": "wBWk+gV/TRbnTbGo2ISKrpLIKjop/6gTi5wpgol4fu8=",
         "usagesDigest": "gbqTmWJJGmYiG5qwRhLkhxY5/90TLSD/Wv9URCvglQo=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
@@ -166,7 +166,7 @@
     },
     "//kustomize:extensions.bzl%kustomize": {
       "general": {
-        "bzlTransitiveDigest": "FSVPDrXMHaOvp53FoZmTD/K+NnHnMLCeUF9MCr235X0=",
+        "bzlTransitiveDigest": "wBWk+gV/TRbnTbGo2ISKrpLIKjop/6gTi5wpgol4fu8=",
         "usagesDigest": "WvY+6gVQ+EsZ9cQYDJPod93X/Wqz0/Iz1XLDKed28fw=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
@@ -175,14 +175,14 @@
           "kustomize_tool": {
             "repoRuleId": "@@//kustomize/private/tools/kustomize:toolchain.bzl%_download_tool",
             "attributes": {
-              "version": "v5.8.0"
+              "version": "v5.8.1"
             }
           },
           "kustomize_tool_toolchains": {
             "repoRuleId": "@@//kustomize/private/tools/kustomize:toolchain.bzl%_toolchains_repo",
             "attributes": {
               "tool_repo": "kustomize_tool",
-              "version": "v5.8.0"
+              "version": "v5.8.1"
             }
           }
         },
@@ -372,7 +372,7 @@
     },
     "@@rules_python+//python/private/pypi:pip.bzl%pip_internal": {
       "general": {
-        "bzlTransitiveDigest": "3iIrqh4dQF0tjDrAfZU4JWgSQHSAUdc6i2i/PRacZ0M=",
+        "bzlTransitiveDigest": "ECoPNA7qZgD0mtv9CbQ2x9wGvZXQwW/oz7Iw3McEn2g=",
         "usagesDigest": "OLoIStnzNObNalKEMRq99FqenhPGLFZ5utVLV4sz7OI=",
         "recordedFileInputs": {
           "@@rules_python+//tools/publish/requirements_darwin.txt": "2994136eab7e57b083c3de76faf46f70fad130bc8e7360a7fed2b288b69e79dc",

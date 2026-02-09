@@ -123,16 +123,16 @@ In order to use these rules in your Bazel project, you must instruct Bazel to do
 
 .. code:: bazel
 
-    bazel_dep(name = "rules_kustomize", version = "0.5.2")
+    bazel_dep(name = "rules_kustomize", version = "0.5.3")
 
-This declaration registers a particular version of the :tool:`helm` and :tool:`kustomize` tools, respectively. By default, it registers `the latest version known to the rules <Tool Versions_>`_. You can specify a preferred version for each tool by supplying the known version slug (e.g. "v5.7.1") as an argument to the respective module extension's :field:`download` tag.
+This declaration registers a particular version of the :tool:`helm` and :tool:`kustomize` tools, respectively. By default, it registers `the latest version known to the rules <Tool Versions_>`_. You can specify a preferred version for each tool by supplying the known version slug (e.g. "v5.8.0") as an argument to the respective module extension's :field:`download` tag.
 
 .. code:: bazel
 
-    bazel_dep(name = "rules_kustomize", version = "0.5.2")
+    bazel_dep(name = "rules_kustomize", version = "0.5.3")
 
     kustomize = use_extension("@rules_kustomize//kustomize:extensions.bzl", "kustomize")
-    kustomize.download(version = "v5.7.1")
+    kustomize.download(version = "v5.8.0")
     helm = use_extension("@rules_kustomize//kustomize:extensions.bzl", "helm")
     helm.download(version = "v3.13.1")
 
@@ -147,7 +147,8 @@ At present, these rules can load the following versions of these tools:
 
 * :tool:`kustomize`
 
-  * `v5.8.0 <https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv5.8.0>`__ (default)
+  * `v5.8.1 <https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv5.8.1>`__ (default)
+  * `v5.8.0 <https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv5.8.0>`__
   * `v5.7.1 <https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv5.7.1>`__
   * `v5.7.0 <https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv5.7.0>`__
   * `v5.6.0 <https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv5.6.0>`__
