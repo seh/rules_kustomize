@@ -15,3 +15,8 @@ patches:
 
 buildMetadata:
 - originAnnotations
+
+# commonLabels is deprecated and builds produce warnings to stderr
+# These warnings are not shown for successful builds if the option `silent_on_success` is set to true
+commonLabels:
+  "car": "ford-mustang"
