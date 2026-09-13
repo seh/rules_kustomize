@@ -111,15 +111,6 @@ helm_toolchain = rule(
     },
 )
 
-# buildifier: disable=unnamed-macro
-def declare_helm_toolchains(helm_tool):
-    for version, platforms in _TOOLS_BY_RELEASE.items():
-        for platform in platforms.keys():
-            helm_toolchain(
-                name = "{}_{}_{}".format(platform.os, platform.arch, version),
-                tool = helm_tool,
-            )
-
 def _translate_host_platform(ctx):
     # NB: This is adapted from rules_go's "_detect_host_platform" function.
     os = ctx.os.name
@@ -190,20 +181,24 @@ _download_tool = repository_rule(
 )
 
 # buildifier: disable=unnamed-macro
-def declare_bazel_toolchains(version, toolchain_prefix):
+def declare_bazel_toolchains(version, tool_repo):
     native.constraint_value(
         name = version,
         constraint_setting = "{}:tool_version".format(_CONTAINING_PACKAGE_PREFIX),
     )
     constraint_value_prefix = "@{}//kustomize/private/tools".format(_MODULE_REPOSITORY_NAME)
     for platform in _TOOLS_BY_RELEASE[version].keys():
+        helm_toolchain(
+            name = "{}_{}_{}".format(platform.os, platform.arch, version),
+            tool = "@{}_{}_{}//:tool".format(tool_repo, platform.os, platform.arch),
+        )
         native.toolchain(
             name = "{}_{}_{}_toolchain".format(platform.os, platform.arch, version),
             exec_compatible_with = [
                 "{}:cpu_{}".format(constraint_value_prefix, platform.arch),
                 "{}:os_{}".format(constraint_value_prefix, platform.os),
             ],
-            toolchain = toolchain_prefix + (":{}_{}_{}".format(platform.os, platform.arch, version)),
+            toolchain = ":{}_{}_{}".format(platform.os, platform.arch, version),
             toolchain_type = "@{}//tools/helm:toolchain_type".format(_MODULE_REPOSITORY_NAME),
         )
 
@@ -231,10 +226,14 @@ _toolchains_repo = repository_rule(
 )
 
 def download_tool(name, version = None):
-    _download_tool(
-        name = name,
-        version = version,
-    )
+    version_str = version or _DEFAULT_TOOL_VERSION
+    for platform in _TOOLS_BY_RELEASE[version_str].keys():
+        _download_tool(
+            name = "{}_{}_{}".format(name, platform.os, platform.arch),
+            version = version_str,
+            os = platform.os,
+            arch = platform.arch,
+        )
     _toolchains_repo(
         name = name + "_toolchains",
         tool_repo = name,
