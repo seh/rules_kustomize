@@ -7,6 +7,8 @@ load(
     _runfile_path = "runfile_path",
 )
 
+visibility("public")
+
 KustomizationInfo = provider(
     doc = "Kustomization root summary",
     fields = {
@@ -155,7 +157,9 @@ _kustomized_resources_attrs = {
     ),
 }
 
-_kustomize_toolchain_type = "//tools/kustomize:toolchain_type"
+# NB: Calling "Label" here works around a defect that Bazel fixed in
+# version 9.3.0, after which the label as a bare string suffices.
+_kustomize_toolchain_type = Label("//tools/kustomize:toolchain_type")
 _helm_toolchain_type = "//tools/helm:toolchain_type"
 
 def _kustomized_resources_impl(ctx):
@@ -166,10 +170,10 @@ def _kustomized_resources_impl(ctx):
 
     args.add(_runfile_path(ctx, kustomization.target_file))
     if kustomization.requires_helm:
-        info = ctx.toolchains[_helm_toolchain_type].helminfo
-        if not info:
-            fail("No Helm toolchain is available; unable to proceed with invoking kustomize without it")
-        helm_tool = info.tool
+        helm_toolchain = ctx.toolchains[_helm_toolchain_type]
+        if not helm_toolchain:
+            fail("No \"helm\" toolchain is available; unable to proceed with invoking \"kustomize\" without it")
+        helm_tool = helm_toolchain.helminfo.tool
         args.add("--enable-helm")
         args.add("--helm-command", helm_tool.path)
     if kustomization.requires_exec_functions:
@@ -222,6 +226,7 @@ def _kustomized_resources_impl(ctx):
         use_default_shell_env = use_default_shell_env,
         mnemonic = mnemonic,
         progress_message = progress_message,
+        toolchain = _kustomize_toolchain_type,
     )
 
 _kustomized_resources = rule(

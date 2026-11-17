@@ -1,5 +1,5 @@
 load(
-    "//kustomize/private/tools/kustomize:toolchain.bzl",
+    "//kustomize/private/tools/kustomize:repositories.bzl",
     "download_tool",
     "known_release_versions",
 )
@@ -13,7 +13,6 @@ visibility("//kustomize")
 
 def _kustomize_impl(ctx):
     download_tool(
-        name = "kustomize_tool",
         version = maximal_selected_version(ctx, "kustomize"),
     )
 

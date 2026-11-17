@@ -1,5 +1,5 @@
 load(
-    "//kustomize/private/tools/helm:toolchain.bzl",
+    "//kustomize/private/tools/helm:repositories.bzl",
     "download_tool",
     "known_release_versions",
 )
@@ -13,8 +13,7 @@ visibility("//kustomize")
 
 def _helm_impl(ctx):
     download_tool(
-        name = "helm_tool",
-        version = maximal_selected_version(ctx, "Helm"),
+        version = maximal_selected_version(ctx, "helm"),
     )
 
 helm = module_extension(

@@ -8,6 +8,8 @@ load(
     "kustomized_resources",
 )
 
+visibility("private")
+
 def kustomize_test(
         name,
         srcs = [],

@@ -7,5 +7,7 @@ load(
     _kustomize = "kustomize",
 )
 
+visibility("public")
+
 helm = _helm
 kustomize = _kustomize
