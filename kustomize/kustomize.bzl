@@ -268,7 +268,7 @@ def kustomized_resources(name, **kwargs):
             ":{}_lacks_runfiles_directory".format(name): ["@bazel_tools//tools/zip:zipper"],
             "//conditions:default": [],
         }),
-        deps = ["@bazel_tools//tools/bash/runfiles"],
+        use_bash_launcher = True,
         tags = tags,
     )
     _kustomized_resources(
