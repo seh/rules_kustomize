@@ -6,7 +6,21 @@ kustomize=$1
 target_file=$2
 shift 2
 
-target_runfile_path="$(rlocation "${target_file}")"
+# NB: Prefer building from a kustomization directory that sits within
+# the runfiles tree, especially for when Bazel invokes this program in
+# an action without a sandbox. In that "unsandboxed" case, the
+# "rlocation" function yields paths—drawn from the runfiles manifest
+# file—that sit within the workspace source tree for source files, and
+# within Bazel's output tree for generated files. If we call that
+# function and build from the directory holding the kustomization
+# file that it reports, the "kustomize" command finds only the input
+# files that sit in that same tree, and writes any files that it
+# creates there too.
+if [ -n "${RUNFILES_DIR:-}" ] && [ -e "${RUNFILES_DIR}/${target_file}" ]; then
+  target_runfile_path="${RUNFILES_DIR}/${target_file}"
+else
+  target_runfile_path="$(rlocation "${target_file}")"
+fi
 if [ -z "${target_runfile_path}" ]; then
   echo >&2 "No runfile path available for target file \"${target_file}\"."
   exit 1
