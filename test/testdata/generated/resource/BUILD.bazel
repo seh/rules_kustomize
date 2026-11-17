@@ -18,7 +18,7 @@ values=()
 
 while read -r v; do
   values+=("$${v}")
-done < "$(location values.txt)"
+done < "$(execpath values.txt)"
 count=$$(( $${#values[@]} ))
 i=0
 while read -r k; do
@@ -28,7 +28,7 @@ while read -r k; do
   fi
   echo "$${k}=$${v}" >> "$(@)"
   (( ++i ))
-done < "$(location keys.txt)"
+done < "$(execpath keys.txt)"
 """,
     visibility = ["//test:__subpackages__"],
 )

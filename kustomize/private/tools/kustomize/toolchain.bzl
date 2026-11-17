@@ -10,7 +10,7 @@ _TOOLS_BY_RELEASE = {
         struct(os = "linux", arch = "arm64"): "9867b76482cfc6d25b546abc1d2b5a32bd137505aba640649b4b378f64f6d68f",
         struct(os = "windows", arch = "amd64"): "763c4040ff01435bfce39661072452ebdf1cf2808bb91f5708ab4420834fbd42",
         struct(os = "windows", arch = "arm64"): "b86236917e649e2f9531899c519f333e554cd1fc0c87132b86b885bf315735dc",
-    },    
+    },
     "v5.8.1": {
         struct(os = "darwin", arch = "amd64"): "ee7cf0c1e3592aa7bb66ba82b359933a95e7f2e0b36e5f53ed0a4535b017f2f8",
         struct(os = "darwin", arch = "arm64"): "8886f8a78474e608cc81234f729fda188a9767da23e28925802f00ece2bab288",
