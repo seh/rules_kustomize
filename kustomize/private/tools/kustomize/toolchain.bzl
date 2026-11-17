@@ -111,43 +111,14 @@ kustomize_toolchain = rule(
     },
 )
 
-# buildifier: disable=unnamed-macro
-def declare_kustomize_toolchains(kustomize_tool):
-    for version, platforms in _TOOLS_BY_RELEASE.items():
-        for platform in platforms.keys():
-            kustomize_toolchain(
-                name = "{}_{}_{}".format(platform.os, platform.arch, version),
-                tool = kustomize_tool,
-            )
-
-def _translate_host_platform(ctx):
-    # NB: This is adapted from rules_go's "_detect_host_platform" function.
-    os = ctx.os.name
-    if os == "mac os x":
-        os = "darwin"
-    elif os.startswith("windows"):
-        os = "windows"
-
-    arch = ctx.os.arch
-    if arch == "aarch64":
-        arch = "arm64"
-    elif arch == "x86_64":
-        arch = "amd64"
-
-    return os, arch
-
 _MODULE_REPOSITORY_NAME = "rules_kustomize"
 _CONTAINING_PACKAGE_PREFIX = "//kustomize/private/tools/kustomize"
 
+def _tool_repo_name(prefix, platform):
+    return "{}_{}_{}".format(prefix, platform.os, platform.arch)
+
 def _download_tool_impl(ctx):
-    if not ctx.attr.arch and not ctx.attr.os:
-        os, arch = _translate_host_platform(ctx)
-    else:
-        if not ctx.attr.arch:
-            fail('"os" is set but "arch" is not')
-        if not ctx.attr.os:
-            fail('"arch" is set but "os" is not')
-        os, arch = ctx.attr.os, ctx.attr.arch
+    os, arch = ctx.attr.os, ctx.attr.arch
     version = ctx.attr.version
     extension = ".zip" if os == "windows" else ".tar.gz"
 
@@ -183,8 +154,8 @@ def _download_tool_impl(ctx):
 _download_tool = repository_rule(
     implementation = _download_tool_impl,
     attrs = {
-        "arch": attr.string(),
-        "os": attr.string(),
+        "arch": attr.string(mandatory = True),
+        "os": attr.string(mandatory = True),
         "version": attr.string(
             values = _TOOLS_BY_RELEASE.keys(),
             default = _DEFAULT_TOOL_VERSION,
@@ -193,7 +164,7 @@ _download_tool = repository_rule(
 )
 
 # buildifier: disable=unnamed-macro
-def declare_bazel_toolchains(version, toolchain_prefix):
+def declare_bazel_toolchains(version, tool_repo_prefix):
     native.constraint_value(
         name = version,
         constraint_setting = "{}:tool_version".format(_CONTAINING_PACKAGE_PREFIX),
@@ -206,7 +177,7 @@ def declare_bazel_toolchains(version, toolchain_prefix):
                 "{}:cpu_{}".format(constraint_value_prefix, platform.arch),
                 "{}:os_{}".format(constraint_value_prefix, platform.os),
             ],
-            toolchain = toolchain_prefix + (":{}_{}_{}".format(platform.os, platform.arch, version)),
+            toolchain = "@{}//:toolchain".format(_tool_repo_name(tool_repo_prefix, platform)),
             toolchain_type = "@{}//tools/kustomize:toolchain_type".format(_MODULE_REPOSITORY_NAME),
         )
 
@@ -217,7 +188,7 @@ def _toolchains_impl(ctx):
         executable = False,
         substitutions = {
             "{containing_package_prefix}": "@{}{}".format(_MODULE_REPOSITORY_NAME, _CONTAINING_PACKAGE_PREFIX),
-            "{tool_repo}": ctx.attr.tool_repo,
+            "{tool_repo_prefix}": ctx.attr.tool_repo_prefix,
             "{version}": ctx.attr.version,
         },
     )
@@ -225,7 +196,7 @@ def _toolchains_impl(ctx):
 _toolchains_repo = repository_rule(
     implementation = _toolchains_impl,
     attrs = {
-        "tool_repo": attr.string(mandatory = True),
+        "tool_repo_prefix": attr.string(mandatory = True),
         "version": attr.string(
             values = _TOOLS_BY_RELEASE.keys(),
             default = _DEFAULT_TOOL_VERSION,
@@ -234,12 +205,15 @@ _toolchains_repo = repository_rule(
 )
 
 def download_tool(name, version = None):
-    _download_tool(
-        name = name,
-        version = version,
-    )
+    for platform in _TOOLS_BY_RELEASE[version or _DEFAULT_TOOL_VERSION].keys():
+        _download_tool(
+            name = _tool_repo_name(name, platform),
+            arch = platform.arch,
+            os = platform.os,
+            version = version,
+        )
     _toolchains_repo(
         name = name + "_toolchains",
-        tool_repo = name,
+        tool_repo_prefix = name,
         version = version,
     )

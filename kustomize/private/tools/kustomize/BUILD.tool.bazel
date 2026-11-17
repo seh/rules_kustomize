@@ -1,7 +1,7 @@
 load(
     "{containing_package_prefix}:toolchain.bzl",
-    "declare_kustomize_toolchains",
     "kustomize_tool",
+    "kustomize_toolchain",
 )
 
 kustomize_tool(
@@ -10,6 +10,7 @@ kustomize_tool(
     version = "{version}",
 )
 
-declare_kustomize_toolchains(
-    kustomize_tool = ":tool",
+kustomize_toolchain(
+    name = "toolchain",
+    tool = ":tool",
 )

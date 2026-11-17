@@ -1,7 +1,7 @@
 load(
     "{containing_package_prefix}:toolchain.bzl",
-    "declare_helm_toolchains",
     "helm_tool",
+    "helm_toolchain",
 )
 
 helm_tool(
@@ -10,6 +10,7 @@ helm_tool(
     version = "{version}",
 )
 
-declare_helm_toolchains(
-    helm_tool = ":tool",
+helm_toolchain(
+    name = "toolchain",
+    tool = ":tool",
 )

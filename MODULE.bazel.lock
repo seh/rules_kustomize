@@ -195,18 +195,56 @@
   "moduleExtensions": {
     "//kustomize:extensions.bzl%helm": {
       "general": {
-        "bzlTransitiveDigest": "SqXJFpsP5P225UpYl7w++kv02+cHxSYFTiuMVUiM2ik=",
+        "bzlTransitiveDigest": "VZGmfqh+4wjpF5/qtuwc6NqRbn5JSgZMAOqE1RYtXI0=",
         "usagesDigest": "gbqTmWJJGmYiG5qwRhLkhxY5/90TLSD/Wv9URCvglQo=",
         "recordedInputs": [],
         "generatedRepoSpecs": {
-          "helm_tool": {
+          "helm_tool_darwin_amd64": {
             "repoRuleId": "@@//kustomize/private/tools/helm:toolchain.bzl%_download_tool",
-            "attributes": {}
+            "attributes": {
+              "arch": "amd64",
+              "os": "darwin"
+            }
+          },
+          "helm_tool_darwin_arm64": {
+            "repoRuleId": "@@//kustomize/private/tools/helm:toolchain.bzl%_download_tool",
+            "attributes": {
+              "arch": "arm64",
+              "os": "darwin"
+            }
+          },
+          "helm_tool_linux_amd64": {
+            "repoRuleId": "@@//kustomize/private/tools/helm:toolchain.bzl%_download_tool",
+            "attributes": {
+              "arch": "amd64",
+              "os": "linux"
+            }
+          },
+          "helm_tool_linux_arm64": {
+            "repoRuleId": "@@//kustomize/private/tools/helm:toolchain.bzl%_download_tool",
+            "attributes": {
+              "arch": "arm64",
+              "os": "linux"
+            }
+          },
+          "helm_tool_windows_amd64": {
+            "repoRuleId": "@@//kustomize/private/tools/helm:toolchain.bzl%_download_tool",
+            "attributes": {
+              "arch": "amd64",
+              "os": "windows"
+            }
+          },
+          "helm_tool_windows_arm64": {
+            "repoRuleId": "@@//kustomize/private/tools/helm:toolchain.bzl%_download_tool",
+            "attributes": {
+              "arch": "arm64",
+              "os": "windows"
+            }
           },
           "helm_tool_toolchains": {
             "repoRuleId": "@@//kustomize/private/tools/helm:toolchain.bzl%_toolchains_repo",
             "attributes": {
-              "tool_repo": "helm_tool"
+              "tool_repo_prefix": "helm_tool"
             }
           }
         }
@@ -214,18 +252,56 @@
     },
     "//kustomize:extensions.bzl%kustomize": {
       "general": {
-        "bzlTransitiveDigest": "SqXJFpsP5P225UpYl7w++kv02+cHxSYFTiuMVUiM2ik=",
+        "bzlTransitiveDigest": "VZGmfqh+4wjpF5/qtuwc6NqRbn5JSgZMAOqE1RYtXI0=",
         "usagesDigest": "WvY+6gVQ+EsZ9cQYDJPod93X/Wqz0/Iz1XLDKed28fw=",
         "recordedInputs": [],
         "generatedRepoSpecs": {
-          "kustomize_tool": {
+          "kustomize_tool_darwin_amd64": {
             "repoRuleId": "@@//kustomize/private/tools/kustomize:toolchain.bzl%_download_tool",
-            "attributes": {}
+            "attributes": {
+              "arch": "amd64",
+              "os": "darwin"
+            }
+          },
+          "kustomize_tool_darwin_arm64": {
+            "repoRuleId": "@@//kustomize/private/tools/kustomize:toolchain.bzl%_download_tool",
+            "attributes": {
+              "arch": "arm64",
+              "os": "darwin"
+            }
+          },
+          "kustomize_tool_linux_amd64": {
+            "repoRuleId": "@@//kustomize/private/tools/kustomize:toolchain.bzl%_download_tool",
+            "attributes": {
+              "arch": "amd64",
+              "os": "linux"
+            }
+          },
+          "kustomize_tool_linux_arm64": {
+            "repoRuleId": "@@//kustomize/private/tools/kustomize:toolchain.bzl%_download_tool",
+            "attributes": {
+              "arch": "arm64",
+              "os": "linux"
+            }
+          },
+          "kustomize_tool_windows_amd64": {
+            "repoRuleId": "@@//kustomize/private/tools/kustomize:toolchain.bzl%_download_tool",
+            "attributes": {
+              "arch": "amd64",
+              "os": "windows"
+            }
+          },
+          "kustomize_tool_windows_arm64": {
+            "repoRuleId": "@@//kustomize/private/tools/kustomize:toolchain.bzl%_download_tool",
+            "attributes": {
+              "arch": "arm64",
+              "os": "windows"
+            }
           },
           "kustomize_tool_toolchains": {
             "repoRuleId": "@@//kustomize/private/tools/kustomize:toolchain.bzl%_toolchains_repo",
             "attributes": {
-              "tool_repo": "kustomize_tool"
+              "tool_repo_prefix": "kustomize_tool"
             }
           }
         }
