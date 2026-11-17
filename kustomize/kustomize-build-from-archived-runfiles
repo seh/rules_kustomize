@@ -20,14 +20,6 @@ if [ -z "${RUNFILES_MANIFEST_FILE:-}" ]; then
   echo >&2 "The \"RUNFILES_MANIFEST_FILE\" environment variable is not set."
   exit 1
 fi
-if ! [ -e "${RUNFILES_MANIFEST_FILE}" ]; then
-  echo >&2 "The runfiles manifest file "${RUNFILES_MANIFEST_FILE}" does not exist."
-  exit 1
-fi
-if ! [ -f "${RUNFILES_MANIFEST_FILE}" ]; then
-  echo >&2 "The runfiles manifest file "${RUNFILES_MANIFEST_FILE}" is not a regular file."
-  exit 1
-fi
 
 zip_manifest_file="$(mktemp zip-manifest-XXXXXX)"
 sed -E -e 's/^([^ ]+) /\1=/' "${RUNFILES_MANIFEST_FILE}" > "${zip_manifest_file}"
@@ -37,4 +29,4 @@ runfiles_archive_file="$(mktemp runfiles-archive-XXXXXX)"
 kustomization_dir="$(mktemp -d kustomization-target-XXXXXX)"
 "${zipper}" x "${runfiles_archive_file}" -d "${kustomization_dir}"
 
-"${kustomize}" build "${kustomization_dir}/$(dirname ${target_file})" "${@}"
+"${kustomize}" build "${kustomization_dir}/$(dirname "${target_file}")" "${@}"

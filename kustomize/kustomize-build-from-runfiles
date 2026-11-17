@@ -6,10 +6,10 @@ kustomize=$1
 target_file=$2
 shift 2
 
-target_runfile_path="$(rlocation ${target_file})"
+target_runfile_path="$(rlocation "${target_file}")"
 if [ -z "${target_runfile_path}" ]; then
   echo >&2 "No runfile path available for target file \"${target_file}\"."
   exit 1
 fi
 
-"${kustomize}" build "$(dirname ${target_runfile_path})" "${@}"
+"${kustomize}" build "$(dirname "${target_runfile_path}")" "${@}"
