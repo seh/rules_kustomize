@@ -22,7 +22,7 @@ if [ -z "${RUNFILES_MANIFEST_FILE:-}" ]; then
 fi
 
 zip_manifest_file="$(mktemp zip-manifest-XXXXXX)"
-sed -E -e 's/^([^ ]+) /\1=/' "${RUNFILES_MANIFEST_FILE}" > "${zip_manifest_file}"
+sed -E -e 's/^([^ ]+) /\1=/' "${RUNFILES_MANIFEST_FILE}" >"${zip_manifest_file}"
 runfiles_archive_file="$(mktemp runfiles-archive-XXXXXX)"
 "${zipper}" c "${runfiles_archive_file}" "@${zip_manifest_file}"
 

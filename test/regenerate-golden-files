@@ -2,20 +2,20 @@
 
 set -E -e -u -o pipefail
 
-cd "$(realpath $(dirname ${BASH_SOURCE[0]}))"
+cd "$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
 
 targets=$(bazel query 'kind("kustomized_resources", deps(tests(//test:all)))')
 
-bazel build ${targets}
+xargs bazel build <<<"${targets}"
 
 while IFS='' read -r target; do
   base_target_name="${target#//test:}"
   target_path="${base_target_name%_resources}"
   result_file="../bazel-bin/test/${target_path}_resources.yaml"
   golden_file="./testdata/${target_path}/golden.yaml"
-  if [ ! -e "${golden_file}" ] || ! diff -q "${golden_file}" "${result_file}" > /dev/null; then
+  if [ ! -e "${golden_file}" ] || ! diff -q "${golden_file}" "${result_file}" >/dev/null; then
     dst="./testdata/${target_path}/golden.yaml"
     cp -p "${result_file}" "${dst}"
     chmod 644 "${dst}"
   fi
-done <<< "${targets}"
+done <<<"${targets}"
