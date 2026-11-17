@@ -2,20 +2,17 @@
 
 set -E -e -u -o pipefail
 
-cd "$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
+cd "$(realpath "$(dirname "${BASH_SOURCE[0]}")/..")"
 
-targets=$(bazel query 'kind("kustomized_resources", deps(tests(//test:all)))')
+test_target_labels="$(bazelisk query 'kind("^diff_test rule$", tests(//test:all))')"
 
-xargs bazel build <<<"${targets}"
+xargs bazelisk build <<<"${test_target_labels}"
 
-while IFS='' read -r target; do
-  base_target_name="${target#//test:}"
-  target_path="${base_target_name%_resources}"
-  result_file="../bazel-bin/test/${target_path}_resources.yaml"
-  golden_file="./testdata/${target_path}/golden.yaml"
+while IFS='' read -r test_target_label; do
+  result_file="$(bazelisk cquery --output=files "labels(file1, ${test_target_label})")"
+  golden_file="$(bazelisk cquery --output=files "labels(file2, ${test_target_label})")"
   if [ ! -e "${golden_file}" ] || ! diff -q "${golden_file}" "${result_file}" >/dev/null; then
-    dst="./testdata/${target_path}/golden.yaml"
-    cp -p "${result_file}" "${dst}"
-    chmod 644 "${dst}"
+    cp -p "${result_file}" "${golden_file}"
+    chmod 644 "${golden_file}"
   fi
-done <<<"${targets}"
+done <<<"${test_target_labels}"
