@@ -4,9 +4,15 @@ load(
     "helm_toolchain",
 )
 
+alias(
+    name = "binary",
+    actual = "helm{extension}",
+    visibility = ["@{toolchains_repo}//:__pkg__"],
+)
+
 helm_tool(
     name = "tool",
-    binary = "helm{extension}",
+    binary = ":binary",
     version = "{version}",
 )
 

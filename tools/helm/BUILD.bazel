@@ -1,3 +1,9 @@
+alias(
+    name = "helm",
+    actual = "@helm_tool_toolchains//:helm",
+    visibility = ["//visibility:public"],
+)
+
 toolchain_type(
     name = "toolchain_type",
     visibility = ["//visibility:public"],

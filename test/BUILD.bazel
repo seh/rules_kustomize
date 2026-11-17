@@ -1,4 +1,11 @@
-load("kustomize_test.bzl", "kustomize_test")
+load(
+    "@bazel_skylib//rules:native_binary.bzl",
+    "native_test",
+)
+load(
+    "kustomize_test.bzl",
+    "kustomize_test",
+)
 
 kustomize_test(
     name = "simple",
@@ -44,3 +51,15 @@ kustomize_test(
     ],
     requires_helm = True,
 )
+
+[
+    native_test(
+        name = "{}_tool_test".format(tool),
+        src = "//tools/{}".format(tool),
+        args = ["version"],
+    )
+    for tool in [
+        "helm",
+        "kustomize",
+    ]
+]

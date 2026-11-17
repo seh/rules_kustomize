@@ -5,6 +5,7 @@
 .. role:: krmkind(emphasis)
 .. role:: macro(code)
 .. role:: pfield(code)
+.. role:: rule(code)
 .. role:: ruleattr(kbd)
 .. role:: term(emphasis)
 .. role:: tool(emphasis)
@@ -158,6 +159,25 @@ At present, these rules can load the following versions of these tools:
   * `v4.3.0 <https://github.com/helm/helm/releases/tag/v4.3.0>`__ (default)
   * `v4.1.1 <https://github.com/helm/helm/releases/tag/v4.1.1>`__
   * `v3.19.0 <https://github.com/helm/helm/releases/tag/v3.19.0>`__
+
+Running the Tools Yourself
+==========================
+
+If you'd like to run the same :tool:`kustomize` or :tool:`helm` tool that these rules use, you can have Bazel run it for you, without installing the tool separately.
+
+.. code:: shell
+
+    # Invoke the "kustomize" tool:
+    bazel run @rules_kustomize//tools/kustomize -- version
+
+    # Invoke the "helm" tool:
+    bazel run @rules_kustomize//tools/helm -- version
+
+Bazel downloads the tool the first time that you ask for it. You get the same version that your builds use: the one you requested as described in `Integrating Into Your Project`_, or the default version otherwise.
+
+Other rules can depend on these same labels when they need to run one of these tools in a build action. A :rule:`genrule` target, for instance, can list either label in its :ruleattr:`tools` attribute. Bazel then supplies the tool built for whichever machine will run that action, which may not be the computer in front of you when you use remote execution.
+
+Note that :command:`bazel run` honors the :cmdflag:`--platforms` flag here, as it does for any program that it runs. If you use that flag to build for some other platform, Bazel will try to run the tool built for that platform, and your computer may be unable to run it.
 
 Rules
 =====

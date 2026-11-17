@@ -4,9 +4,15 @@ load(
     "kustomize_toolchain",
 )
 
+alias(
+    name = "binary",
+    actual = "kustomize{extension}",
+    visibility = ["@{toolchains_repo}//:__pkg__"],
+)
+
 kustomize_tool(
     name = "tool",
-    binary = "kustomize{extension}",
+    binary = ":binary",
     version = "{version}",
 )
 
