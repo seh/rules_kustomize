@@ -2,3 +2,6 @@
 /bazel-out
 /bazel-rules_kustomize
 /bazel-testlogs
+/examples/bzlmod/bazel-*
+
+*~
