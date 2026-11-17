@@ -142,7 +142,7 @@ _kustomized_resources_attrs = {
         mandatory = True,
     ),
     "load_restrictor": attr.string(
-        doc = "Control whether kustomizations may load files from outsider their root directory.",
+        doc = "Control whether kustomizations may load files from outside their root directory.",
         values = [
             "None",
             "RootOnly",
@@ -179,7 +179,7 @@ def _kustomized_resources_impl(ctx):
     if kustomization.requires_starlark_functions:
         args.add("--enable-star")
 
-    # Place exported environment varibles first, allowing shadowing by
+    # Place exported environment variables first, allowing shadowing by
     # explicit bindings
     for name in ctx.attr.env_exports:
         if len(name) == 0:
@@ -253,6 +253,7 @@ def kustomized_resources(name, **kwargs):
         constraint_values = [
             Label("@platforms//os:windows"),
         ],
+        visibility = ["//visibility:private"],
     )
     sh_binary(
         name = kustomize_build_name,
