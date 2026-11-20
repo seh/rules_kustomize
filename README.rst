@@ -160,6 +160,36 @@ At present, these rules can load the following versions of these tools:
   * `v4.1.1 <https://github.com/helm/helm/releases/tag/v4.1.1>`__
   * `v3.19.0 <https://github.com/helm/helm/releases/tag/v3.19.0>`__
 
+Supplying Your Own Tools
+========================
+
+If none of the tool versions that these rules offer suits you, you can supply a :tool:`kustomize` or :tool:`helm` tool of your own. Declare it in a :file:`BUILD.bazel` file with the :macro:`kustomize_toolchains` macro, or with the :macro:`helm_toolchains` macro for :tool:`helm`.
+
+.. code:: bazel
+
+    load(
+        "@rules_kustomize//tools/kustomize:toolchain.bzl",
+        "kustomize_toolchains",
+    )
+
+    kustomize_toolchains(
+        name = "my_kustomize",
+        binary = "//third_party/kustomize:kustomize_v5.8.2_linux_amd64",
+        constraint_values = [
+            "@platforms//os:linux",
+            "@platforms//cpu:x86_64",
+        ],
+        version = "v5.8.2",
+    )
+
+In your :file:`MODULE.bazel` file, register the toolchains that the macro declared:
+
+.. code:: bazel
+
+    register_toolchains("//tools:all")
+
+The :ruleattr:`constraint_values` argument describes the machines on which your binary can run. Leave it out for a tool that Bazel builds from source. The rules then use your tool wherever those constraints match, and so do the labels described in `Running the Tools Yourself`_. Elsewhere, both fall back to the downloaded tools.
+
 Running the Tools Yourself
 ==========================
 
@@ -174,6 +204,8 @@ If you'd like to run the same :tool:`kustomize` or :tool:`helm` tool that these 
     bazel run @rules_kustomize//tools/helm -- version
 
 Bazel downloads the tool the first time that you ask for it. You get the same version that your builds use: the one you requested as described in `Integrating Into Your Project`_, or the default version otherwise.
+
+If you supply a tool of your own, as described in `Supplying Your Own Tools`_, these labels run that tool in place of the downloaded one.
 
 Other rules can depend on these same labels when they need to run one of these tools in a build action. A :rule:`genrule` target, for instance, can list either label in its :ruleattr:`tools` attribute. Bazel then supplies the tool built for whichever machine will run that action, which may not be the computer in front of you when you use remote execution.
 

@@ -195,7 +195,7 @@
   "moduleExtensions": {
     "//kustomize:extensions.bzl%helm": {
       "general": {
-        "bzlTransitiveDigest": "HTZVfxO9FJUQ81o5kBmdMU7Q+5HYEhbi93MvaMBl9sY=",
+        "bzlTransitiveDigest": "qjAhOSJgE+sghUP8/iwtrd6ZMLy+jti5q6BYAPbGtWM=",
         "usagesDigest": "gbqTmWJJGmYiG5qwRhLkhxY5/90TLSD/Wv9URCvglQo=",
         "recordedInputs": [],
         "generatedRepoSpecs": {
@@ -250,7 +250,7 @@
     },
     "//kustomize:extensions.bzl%kustomize": {
       "general": {
-        "bzlTransitiveDigest": "HTZVfxO9FJUQ81o5kBmdMU7Q+5HYEhbi93MvaMBl9sY=",
+        "bzlTransitiveDigest": "qjAhOSJgE+sghUP8/iwtrd6ZMLy+jti5q6BYAPbGtWM=",
         "usagesDigest": "WvY+6gVQ+EsZ9cQYDJPod93X/Wqz0/Iz1XLDKed28fw=",
         "recordedInputs": [],
         "generatedRepoSpecs": {

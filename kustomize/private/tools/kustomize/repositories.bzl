@@ -103,7 +103,6 @@ def _toolchains_impl(ctx):
     for platform in _TOOLS_BY_RELEASE[version].keys():
         tool_repo = _tool_repo_name(platform)
         platforms["{}_{}".format(platform.os, platform.arch)] = {
-            "binary": "@{}//:binary".format(tool_repo),
             "constraint_values": [
                 str(Label("//kustomize/private/tools:cpu_{}".format(platform.arch))),
                 str(Label("//kustomize/private/tools:os_{}".format(platform.os))),
@@ -117,9 +116,10 @@ def _toolchains_impl(ctx):
         substitutions = {
             "{alias_visibility}": str(Label("//tools/kustomize:__pkg__")),
             "{platforms}": repr(platforms),
+            "{runtime_toolchain_type}": str(Label("//tools/kustomize:runtime_toolchain_type")),
             "{tool_name}": "kustomize",
+            "{toolchain_bzl}": str(Label("//tools/kustomize:toolchain.bzl")),
             "{toolchain_type}": str(Label("//tools/kustomize:toolchain_type")),
-            "{version}": version,
         },
     )
 
